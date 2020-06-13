@@ -45,16 +45,8 @@ class EventListener implements Listener
         $player = $event->getPlayer();
         $item = $player->getInventory()->getItemInHand();
         $itemid = $item->getID();
-        if ($itemid===341) {
-            if ($this->Main->menu[$player->getName()] = true){
-                $player->sendForm(new MainForm($this->Main));
-                $this->Main->menu[$player->getName()] = false;
-                $task = new ClosureTask(function (int $currentTick) use ($player): void {
-                    $this->Main->menu[$player->getName()] = true;
-                });
-                $plugin = Server::getInstance()->getPluginManager()->getPlugin("Menu");
-                $plugin->getScheduler()->scheduleDelayedTask($task, 20 * 2);
-            }
+        if ($itemid == 341) {
+            $player->sendForm(new MainForm($this->Main));
         }
     }
 }
