@@ -1,14 +1,21 @@
 <?php
 
-namespace xtakumatutix\shopui\Form\type;
+namespace xtakumatutix\menu\Form\type;
 
 use pocketmine\form\Form;
 use pocketmine\Player;
-use xtakumatutix\shopui\Form\buysellForm;
-use xtakumatutix\shopui\Form\MainForm;
+use xtakumatutix\menu\Form\MainForm;
 
-Class InfoForm implements Form
+class InfoForm implements Form
 {
+    public function __construct($name, $ping, $ip, $device)
+    {
+        $this->name = $name;
+        $this->ping = $ping;
+        $this->ip = $ip;
+        $this->device = $device;
+    }
+
     public function handleResponse(Player $player, $data): void
     {
         if ($data === null) {
@@ -20,20 +27,11 @@ Class InfoForm implements Form
     {
         return [
             'type' => 'form',
-            'title' => '②石類',
-            'content' => '選択してください (購入値段/売却値段)',
+            'title' => 'Info',
+            'content' => '名前 / ' . $this->name . "\nIP / " . $this->ip . "\n現在使用しているデバイス / " . $this->device . "\nPing / " . $this->ping,
             'buttons' => [
                 [
-                    'text' => '§c戻る'
-                ],
-                [
-                    'text' => '丸石 (10/8)'
-                ],
-                [
-                    'text' => '石 (15/10)' 
-                ],
-                [
-                    'text' => '苔の生えた石 (17/12)'
+                    'text' => '§c閉じる'
                 ]
             ],
         ];

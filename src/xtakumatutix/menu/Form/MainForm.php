@@ -5,6 +5,7 @@ namespace xtakumatutix\menu\Form;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\form\Form;
 use pocketmine\Player;
+use RuinPray\PlayerAPI;
 use xtakumatutix\menu\Main;
 use xtakumatutix\menu\Form\type\NewsForm;
 use xtakumatutix\menu\Form\type\InfoForm;
@@ -31,9 +32,11 @@ class MainForm implements Form
                 break;
 
             case 2:
+                $name = $player->getName();
                 $ping = $player->getPing();
-                $money = EconomyAPI::getInstance()->myMoney($player);
-                $player->sendForm(new InfoForm());
+                $ip = $player->getAddress();
+                $device = PlayerAPI::getInstance()->getOSType($player);
+                $player->sendForm(new InfoForm($name, $ping, $ip, $device));
                 break;
 
             case 3:

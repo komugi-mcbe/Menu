@@ -40,8 +40,8 @@ Class WalletForm implements Form
     {
         return [
             'type' => 'form',
-            'title' => 'Walet',
-            'content' => 'Walet',
+            'title' => 'KomuWallet',
+            'content' => 'ボタンを押して操作してください',
             'buttons' => [
                 [
                     'text' => '相手にお金をあげる'
