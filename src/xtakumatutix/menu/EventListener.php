@@ -7,9 +7,6 @@ use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\Player;
 use pocketmine\utils\Config;
 use pocketmine\event\player\PlayerInteractEvent;
-use pocketmine\plugin\Plugin;
-use pocketmine\scheduler\ClosureTask;
-use pocketmine\Server;
 use xtakumatutix\menu\Form\MainForm;
 use pocketmine\item\Item;
 

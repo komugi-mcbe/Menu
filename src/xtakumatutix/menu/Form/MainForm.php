@@ -4,8 +4,10 @@ namespace xtakumatutix\menu\Form;
 
 use pocketmine\form\Form;
 use pocketmine\Player;
-use xtakumatutix\menu\Form\type\NewsStoneForm;
+use xtakumatutix\menu\Main;
+use xtakumatutix\menu\Form\type\NewsForm;
 use xtakumatutix\menu\Form\type\StatusForm;
+use xtakumatutix\menu\Form\Walet\WaletForm;
 
 Class MainForm implements Form
 {
@@ -32,6 +34,14 @@ Class MainForm implements Form
 
             case 3:
             $this->Main->getServer()->dispatchCommand($player, 'shop');
+            break;
+
+            case 4:
+            $player->sendForm(new WaletForm($this->Main));
+            break;
+
+            case 5:
+            $player->sendForm(new ServersForm($this->Main));
             break;
         }
     }
