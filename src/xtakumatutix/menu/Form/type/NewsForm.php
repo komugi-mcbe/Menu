@@ -6,7 +6,7 @@ use pocketmine\form\Form;
 use pocketmine\Player;
 use xtakumatutix\shopui\Form\MainForm;
 
-Class NewsForm implements Form
+class NewsForm implements Form
 {
     public function handleResponse(Player $player, $data): void
     {

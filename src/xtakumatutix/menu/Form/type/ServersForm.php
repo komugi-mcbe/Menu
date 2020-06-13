@@ -6,7 +6,7 @@ use pocketmine\form\Form;
 use pocketmine\Player;
 use xtakumatutix\menu\Main;
 
-Class ServersForm implements Form
+class ServersForm implements Form
 {
     public function __construct(Main $Main)
     {
@@ -21,16 +21,16 @@ Class ServersForm implements Form
 
         switch ($data) {
             case 0:
-            $player->transfer("play-nkserver.com", 19132);
-            break;
+                $player->transfer("play-nkserver.com", 19132);
+                break;
 
             case 1:
-            $player->transfer("spaceserver.tokyo", 19132);
-            break;
+                $player->transfer("spaceserver.tokyo", 19132);
+                break;
 
             case 2:
-            $player->transfer("mcbereef.ddo.jp", 19132);
-            break;
+                $player->transfer("mcbereef.ddo.jp", 19132);
+                break;
         }
 
         $player->sendForm(new MainForm());

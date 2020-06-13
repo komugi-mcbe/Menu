@@ -10,7 +10,7 @@ use xtakumatutix\menu\Form\MainForm;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\utils\Config;
 
-Class Main extends PluginBase
+class Main extends PluginBase
 {
     public function onEnable()
     {
@@ -21,12 +21,14 @@ Class Main extends PluginBase
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
     {
-        if(!($sender instanceof Player)){
+        if ($sender instanceof Player) {
             $mymoney = EconomyAPI::getInstance()->myMoney($sender->getName());
-            if($mymoney < 10){
+            if ($mymoney < 10) {
                 $sender->sendMessage("お金が足りません");
-            }else{
+                return true;
+            } else {
                 $sender->sendForm(new MainForm($this));
+                return true;
             }
         }
     }
