@@ -2,18 +2,20 @@
 
 namespace xtakumatutix\menu\Form;
 
+use onebone\economyapi\EconomyAPI;
 use pocketmine\form\Form;
 use pocketmine\Player;
 use xtakumatutix\menu\Main;
 use xtakumatutix\menu\Form\type\NewsForm;
-use xtakumatutix\menu\Form\type\StatusForm;
-use xtakumatutix\menu\Form\Walet\WaletForm;
+use xtakumatutix\menu\Form\type\InfoForm;
+use xtakumatutix\menu\Form\wallet\WalletForm;
+use xtakumatutix\menu\Form\type\ServersForm;
 
-Class MainForm implements Form
+class MainForm implements Form
 {
 
     public function __construct(Main $Main)
-    { 
+    {
         $this->Main = $Main;
     }
 
@@ -25,24 +27,26 @@ Class MainForm implements Form
 
         switch ($data) {
             case 1:
-            $player->sendForm(new NewsForm());
-            break;
+                $player->sendForm(new NewsForm());
+                break;
 
             case 2:
-            $player->sendForm(new InfoForm());
-            break;
+                $ping = $player->getPing();
+                $money = EconomyAPI::getInstance()->myMoney($player);
+                $player->sendForm(new InfoForm());
+                break;
 
             case 3:
-            $this->Main->getServer()->dispatchCommand($player, 'shop');
-            break;
+                $this->Main->getServer()->dispatchCommand($player, 'shop');
+                break;
 
             case 4:
-            $player->sendForm(new WaletForm($this->Main));
-            break;
+                $player->sendForm(new WalletForm($this->Main));
+                break;
 
             case 5:
-            $player->sendForm(new ServersForm($this->Main));
-            break;
+                $player->sendForm(new ServersForm($this->Main));
+                break;
         }
     }
 
@@ -82,10 +86,10 @@ Class MainForm implements Form
                     ],
                 ],
                 [
-                    'text' => 'KomuWalet $',
+                    'text' => 'KomuWallet $',
                     'image' => [
                         'type' => 'path',
-                        'data' => 'textures/menu/walet',
+                        'data' => 'textures/menu/wallet',
                     ],
                 ],
                 [
