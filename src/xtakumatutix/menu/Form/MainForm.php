@@ -2,7 +2,6 @@
 
 namespace xtakumatutix\menu\Form;
 
-use onebone\economyapi\EconomyAPI;
 use pocketmine\form\Form;
 use pocketmine\Player;
 use RuinPray\PlayerAPI;
@@ -11,6 +10,8 @@ use xtakumatutix\menu\Form\type\NewsForm;
 use xtakumatutix\menu\Form\type\InfoForm;
 use xtakumatutix\menu\Form\wallet\WalletForm;
 use xtakumatutix\menu\Form\type\ServersForm;
+use xtakumatutix\menu\Form\type\WarpForm;
+use xtakumatutix\menu\Form\type\SettingForm;
 
 class MainForm implements Form
 {
@@ -35,8 +36,9 @@ class MainForm implements Form
                 $name = $player->getName();
                 $ping = $player->getPing();
                 $ip = $player->getAddress();
-                $device = PlayerAPI::getInstance()->getOSType($player);
-                $player->sendForm(new InfoForm($name, $ping, $ip, $device));
+                $os = PlayerAPI::getInstance()->getOSType($player);
+                $device = PlayerAPI::getInstance()->getDeviceModel($player);
+                $player->sendForm(new InfoForm($name, $ping, $ip, $os, $device));
                 break;
 
             case 3:
@@ -48,7 +50,15 @@ class MainForm implements Form
                 break;
 
             case 5:
+                $player->sendForm(new WarpForm($this->Main));
+                break;
+
+            case 6:
                 $player->sendForm(new ServersForm($this->Main));
+                break;
+
+            case 7:
+                $player->sendForm(new SettingForm($this->Main));
                 break;
         }
     }
@@ -96,10 +106,24 @@ class MainForm implements Form
                     ],
                 ],
                 [
+                    'text' => 'KomuMap !',
+                    'image' => [
+                        'type' => 'path',
+                        'data' => 'textures/menu/warp',
+                    ],
+                ],
+                [
                     'text' => '同盟サーバー',
                     'image' => [
                         'type' => 'path',
                         'data' => 'textures/menu/server',
+                    ],
+                ],
+                [
+                    'text' => '設定',
+                    'image' => [
+                        'type' => 'path',
+                        'data' => 'textures/menu/setting',
                     ],
                 ],
             ],
