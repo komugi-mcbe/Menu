@@ -13,7 +13,7 @@ use xtakumatutix\menu\Form\type\ServersForm;
 use xtakumatutix\menu\Form\type\WarpForm;
 use xtakumatutix\menu\Form\type\SettingForm;
 
-class MainForm implements Form
+class MenuForm implements Form
 {
 
     public function __construct(Main $Main)
@@ -29,7 +29,7 @@ class MainForm implements Form
 
         switch ($data) {
             case 1:
-                $player->sendForm(new NewsForm());
+                $player->sendForm(new NewsForm($this->Main));
                 break;
 
             case 2:

@@ -32,15 +32,13 @@ class ServersForm implements Form
                 $player->transfer("mcbereef.ddo.jp", 19132);
                 break;
         }
-
-        $player->sendForm(new MainForm());
     }
 
     public function jsonSerialize()
     {
         return [
             'type' => 'form',
-            'title' => 'News',
+            'title' => 'Servers',
             'content' => "Cactusのサーバーです\n行きたいサーバーを押すとサーバーへいけます",
             'buttons' => [
                 [
