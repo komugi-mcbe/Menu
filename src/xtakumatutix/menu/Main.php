@@ -6,7 +6,7 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Player;
-use xtakumatutix\menu\Form\MainForm;
+use xtakumatutix\menu\Form\MenuForm;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\utils\Config;
 
@@ -27,7 +27,7 @@ class Main extends PluginBase
                 $sender->sendMessage("お金が足りません");
                 return true;
             } else {
-                $sender->sendForm(new MainForm($this));
+                $sender->sendForm(new MenuForm($this));
                 return true;
             }
         }

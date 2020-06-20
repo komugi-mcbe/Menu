@@ -4,17 +4,23 @@ namespace xtakumatutix\menu\Form\type;
 
 use pocketmine\form\Form;
 use pocketmine\Player;
-use xtakumatutix\shopui\Form\MainForm;
+use xtakumatutix\menu\Main;
+use xtakumatutix\menu\Form\MenuForm;
 
 class NewsForm implements Form
 {
+    public function __construct(Main $Main)
+    {
+        $this->Main = $Main;
+    }
+
     public function handleResponse(Player $player, $data): void
     {
         if ($data === null) {
             return;
         }
 
-        $player->sendForm(new MainForm());
+        $player->sendForm(new MenuForm($this->Main));
     }
 
     public function jsonSerialize()
@@ -22,7 +28,7 @@ class NewsForm implements Form
         return [
             'type' => 'form',
             'title' => 'News',
-            'content' => 'Hello World(ようこそ)',
+            'content' => "§cHello §fWorld\n現在、βテスト中です",
             'buttons' => [
                 [
                     'text' => '§c戻る'

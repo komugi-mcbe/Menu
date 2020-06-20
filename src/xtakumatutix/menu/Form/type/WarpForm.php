@@ -39,6 +39,9 @@ class WarpForm implements Form
             case 2:
                 $player->teleport($this->Main->getServer()->getLevelByName('resource')->getSafeSpawn());
                 break;
+
+            case 3:
+                $player->teleport($this->Main->getServer()->getLevelByName('earth')->getSafeSpawn());
         }
     }
 
@@ -58,6 +61,9 @@ class WarpForm implements Form
                 [
                     'text' => 'Resource \ 人工資源'
                 ],
+                [
+                    'text' => 'Earth \ 地球'
+                ]
             ],
         ];
     }

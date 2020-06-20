@@ -7,7 +7,7 @@ use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\Player;
 use pocketmine\utils\Config;
 use pocketmine\event\player\PlayerInteractEvent;
-use xtakumatutix\menu\Form\MainForm;
+use xtakumatutix\menu\Form\MenuForm;
 use pocketmine\item\Item;
 
 class EventListener implements Listener
@@ -27,11 +27,11 @@ class EventListener implements Listener
             if (!$player->getInventory()->contains(Item::get(341, 0))) {
                 if ($player->getInventory()->canAddItem(Item::get(341, 0, 1))) {
                     $config->set($player->getName());
-                    $config->save();
                     $player->sendMessage("§a >> §fようこそ！！ここではスマホというもので簡単に移動などできます！！。\n §c>> §cなくしたら、shopで買えます(20000KG)");
                     $player->getInventory()->addItem(Item::get(341, 0, 1));
+                    $config->save();
                 } else {
-                    $player->sendMessage("アイテムが入りません");
+                    $player->sendMessage(" §c>> §fアイテムが入りません");
                 }
             }
         }
@@ -43,7 +43,7 @@ class EventListener implements Listener
         $item = $player->getInventory()->getItemInHand();
         $itemid = $item->getID();
         if ($itemid == 341) {
-            $player->sendForm(new MainForm($this->Main));
+            $player->sendForm(new MenuForm($this->Main));
         }
     }
 }
