@@ -5,15 +5,13 @@ namespace xtakumatutix\menu\Form\type;
 use pocketmine\form\Form;
 use pocketmine\Player;
 use xtakumatutix\menu\Form\MainForm;
+use RuinPray\PlayerAPI;
 
 class InfoForm implements Form
 {
-    public function __construct($name, $ping, $ip, $device)
+    public function __construct($player)
     {
-        $this->name = $name;
-        $this->ping = $ping;
-        $this->ip = $ip;
-        $this->device = $device;
+        $this->player = $player;
     }
 
     public function handleResponse(Player $player, $data): void
@@ -28,7 +26,7 @@ class InfoForm implements Form
         return [
             'type' => 'form',
             'title' => 'Info',
-            'content' => '名前 / ' . $this->name . "\nIP / " . $this->ip . "\n現在使用しているデバイス / " . $this->device . "\nPing / " . $this->ping,
+            'content' => '名前 / ' . $this->player->getName() . "\nIP / " . $this->player->getAddress() . "\n現在使用しているデバイス / " . PlayerAPI::getInstance()->getOSType($this->player) . "\nPing / " . $this->player->getPing(),
             'buttons' => [
                 [
                     'text' => '§c閉じる'

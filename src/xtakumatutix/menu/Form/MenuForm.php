@@ -33,12 +33,7 @@ class MenuForm implements Form
                 break;
 
             case 2:
-                $name = $player->getName();
-                $ping = $player->getPing();
-                $ip = $player->getAddress();
-                $os = PlayerAPI::getInstance()->getOSType($player);
-                $device = PlayerAPI::getInstance()->getDeviceModel($player);
-                $player->sendForm(new InfoForm($name, $ping, $ip, $os, $device));
+                $player->sendForm(new InfoForm($player));
                 break;
 
             case 3:
@@ -58,7 +53,8 @@ class MenuForm implements Form
                 break;
 
             case 7:
-                $player->sendForm(new SettingForm($this->Main));
+                $name = $player->getName();
+                $player->sendForm(new SettingForm($this->Main, $name));
                 break;
         }
     }
