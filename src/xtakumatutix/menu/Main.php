@@ -17,6 +17,7 @@ class Main extends PluginBase
         $this->getLogger()->notice("読み込み完了 - ver." . $this->getDescription()->getVersion());
         $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
         $this->config = new Config($this->getDataFolder() . "gotphone.yml", Config::YAML);
+        $this->search = new Config($this->getDataFolder() . "search.yml", Config::YAML);
     }
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool

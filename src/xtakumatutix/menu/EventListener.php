@@ -3,6 +3,8 @@
 namespace xtakumatutix\menu;
 
 use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerChangeSkinEvent;
+use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\Player;
 use pocketmine\utils\Config;
@@ -37,13 +39,27 @@ class EventListener implements Listener
         }
     }
 
-    public function onTap(PlayerInteractEvent $event)
+    public function onChat(PlayerChatEvent $event)
     {
         $player = $event->getPlayer();
-        $item = $player->getInventory()->getItemInHand();
-        $itemid = $item->getID();
-        if ($itemid == 341) {
-            $player->sendForm(new MenuForm($this->Main));
+        $config = $this->Main->search;
+        $name = $player->getName();
+        if ($config->exists($name)) {
+            if ($config->get($name) == 'true') {
+                $message = $event->getMessage();
+                $worldname = $player->getLevel()->getFolderName();
+                $event->setMessage($message . '§7<' . $worldname . '>');
+            }
         }
     }
-}
+
+    public function onTap(PlayerInteractEvent $event)
+        {
+            $player = $event->getPlayer();
+            $item = $player->getInventory()->getItemInHand();
+            $itemid = $item->getID();
+            if ($itemid == 341) {
+                $player->sendForm(new MenuForm($this->Main));
+            }
+        }
+    }

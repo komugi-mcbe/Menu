@@ -22,6 +22,10 @@ class SettingForm implements Form
         switch ($data){
             case 2:
                 $this->Main->getServer()->dispatchCommand($player, 'passwd');
+                break;
+            case 3:
+                $player->sendForm(new SearchSettingForm($this->Main));
+                break;
         }
     }
 
